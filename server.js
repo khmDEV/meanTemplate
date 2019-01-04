@@ -26,9 +26,23 @@ app.use(bodyParser.urlencoded({
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
+
+ // Session ==================================================
+var sessions = require('express-session');
+app.use(sessions({
+  cookieName: 'session', // cookie name dictates the key name added to the request object
+  secret: "lol",//require('crypto').randomBytes(64).toString('hex'), // should be a large unguessable string
+  duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms
+  proxy: true,
+  resave: true,
+  saveUninitialized: true,
+  activeDuration: 1000 * 60 * 5 // if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds
+}));
+
 // routes ==================================================
 app.use('/',require('./app/routes/mainRoutes'));
-app.use('/',require('./app/routes/APIRoutes'));
+app.use('/API/user/',require('./app/routes/user/APIUserLogin'));
+app.use('/API/user/',require('./app/routes/user/APIUserRegister'));
 
 // start app ===============================================
 var port = process.env.PORT || 8080; // set our port

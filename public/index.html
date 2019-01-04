@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <base href="/">
 
-  <title ng-if="titleName!=undefined" ng-bind="titleName"></title>
-  <link rel="icon" type="image/png" href="imagenes/logo.png">
+  <title ng-if="TitleName!=undefined" ng-bind="TitleName"></title>
+  <link rel="icon" type="image/png" href="imagenes/BlogImages/logo.png">
 
   <!-- CSS -->
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
@@ -22,6 +22,8 @@
 
   <!-- ANGULAR CUSTOM -->
   <script src="js/controllers/MainControllers.js"></script>
+  <script src="js/controllers/users/LoginControllers.js"></script>
+  <script src="js/controllers/users/RegisterControllers.js"></script>
 
   <script src="js/appRoutes.js"></script>
   <script src="js/app.js"></script>
@@ -29,9 +31,53 @@
 
 <body>
   <!-- Modals -->
+  <div ng-include="'modals/login.html'"></div>
+  <div ng-include="'modals/register.html'"></div>
   <div ng-include="'modals/default.html'"></div>
 
-  <!-- View -->
-  <div ng-view></div>
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">{{TitleName}}</a>
+          </div>
+          <div>
+            <ul class="nav navbar-nav">
+              <li ng-attr-class="{{page=='inicio' && 'active' || ''  }}"><a href="/">Inicio</a></li>
+            </ul>
+          </div>
+          <ul ng-if="user==undefined" ng-controller="LoginController" class="nav navbar-nav navbar-right" ng-include="'views/User/login.html'"></ul>
+          <ul ng-if="user!=undefined" ng-controller="LoginController" class="nav navbar-nav navbar-right" ng-include="'views/User/loged.html'"></ul>
+        </div>
+      </nav>
+
+      <div ng-view></div>
+
+      <!-- Page Content -->
+      <div class="container">
+
+        <!-- Footer -->
+        <footer>
+          <div class="row">
+            <div class="col-lg-12">
+              <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+              </a>
+              <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">{{HostName}}</span> está distribuido bajo una <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licencia Creative Commons Atribución 4.0 Internacional</a>. </div>
+          </div>
+          <!-- /.row -->
+        </footer>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
 
 </body>
+
+</html>

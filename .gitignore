@@ -37,4 +37,4 @@ public/imagenes/BlogAvatar/*
 
 # Others
 *~
-config/config.js
+config/secureConfig.js

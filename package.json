@@ -2,29 +2,30 @@
   "name": "starter-node-angular",
   "main": "server.js",
   "devDependencies": {
-    "nodemon": "latest",
     "chai": "latest",
     "chai-http": "latest",
-    "grunt": "^1.0.3",
-    "grunt-contrib-jshint": "^2.0.0",
-    "mocha": "latest"
+    "crypto-js": "^3.1.9-1",
+    "mocha": "latest",
+    "nodemon": "latest"
   },
   "dependencies": {
-    "body-parser": "latest",
-    "express": "latest",
-    "method-override": "latest",
-    "mongoose": "latest",
-    "request": "latest",
-    "yarn": "latest",
-    "http-post": "latest",
-    "urlencode": "latest",
     "@bower_components/angular": "angular/bower-angular#1.7.5",
     "@bower_components/angular-route": "angular/bower-angular-route#*",
-    "@bower_components/bootstrap": "twbs/bootstrap#*"
+    "@bower_components/bootstrap": "twbs/bootstrap#*",
+    "bcrypt": "latest",
+    "body-parser": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "http-post": "latest",
+    "method-override": "latest",
+    "mongoose": "latest",
+    "nodemailer": "^5.0.0",
+    "request": "latest",
+    "urlencode": "latest",
+    "yarn": "latest"
   },
   "scripts": {
     "start": "nodemon server.js",
-    "install": "yarn",
     "test": "node_modules/.bin/mocha --exit",
     "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
   },
